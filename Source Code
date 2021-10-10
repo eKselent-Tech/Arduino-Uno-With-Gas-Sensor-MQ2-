@@ -1,0 +1,38 @@
+#include<LiquidCrystal.h>   
+LiquidCrystal lcd(8,9,10,11,12,13);
+#define sen1  A0
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(sen1,INPUT);
+  lcd.begin(16, 2);   
+  lcd.setCursor(4, 0);
+  lcd.print("WELCOME");
+  lcd.setCursor(0, 1); 
+  lcd.print(" .............. ");  
+
+  lcd.clear(); 
+  lcd.setCursor(0, 0);
+  lcd.print("GAS LEAKAGE");
+  lcd.setCursor(0, 1); 
+  lcd.print("ALERT SYSTEM");  
+  delay(1500); 
+  lcd.clear(); 
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if(digitalRead(sen1) == 0){
+  
+  lcd.setCursor(0, 0);
+  lcd.print("ALERT! GAS      ");
+  lcd.setCursor(0, 1); 
+  lcd.print("LEAKAGE DETECTED");  
+  }
+  if(digitalRead(sen1)==1){
+    
+  lcd.setCursor(0, 0);
+  lcd.print("    NO  GAS     ");
+  lcd.setCursor(0, 1); 
+  lcd.print("    LEAKAGE     ");  
+  }
+}
